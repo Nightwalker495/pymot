@@ -96,3 +96,23 @@ class Detectors(object):
         # cv2.imshow('Track Bugs', frame)
 
         return centers
+
+
+class FaceDetector:
+    def __init__(self):
+        self._face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+    def Detect(self, frame):
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # Detect the faces
+        faces = self._face_cascade.detectMultiScale(gray, 1.1, 4)
+        # Draw the rectangle around each face
+        centers = []
+
+        for (x, y, w, h) in faces:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            center = (x + w / 2, y + h / 2)
+            cv2.circle(frame, (int(round(center[0])), int(round(center[1]))), 4, (0, 0, 255), -1)
+            centers.append(np.round(np.array(center)))
+
+        return centers

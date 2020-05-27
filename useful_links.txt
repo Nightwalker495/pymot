@@ -1,0 +1,3 @@
+https://github.com/adipandas/multi-object-tracker
+https://github.com/SpyderXu/multi-object-tracking-paper-list
+https://github.com/cheind/py-motmetrics

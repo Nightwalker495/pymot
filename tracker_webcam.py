@@ -9,13 +9,15 @@
 """
 
 import cv2
-from detectors import Detectors
+
+from detectors import Detectors, FaceDetector
 from tracker import Tracker
 
 
 def main():
     cap = cv2.VideoCapture(0)
-    detector = Detectors()
+    # detector = Detectors()
+    detector = FaceDetector()
     tracker = Tracker(160, 30, 5, 100)
 
     skip_frame_count = 0
@@ -59,10 +61,10 @@ def main():
         cv2.imshow('Original', orig_frame)
 
         # Slower the FPS
-        cv2.waitKey(50)
+        cv2.waitKey(1)
 
         # Check for key strokes
-        k = cv2.waitKey(50) & 0xff
+        k = cv2.waitKey(1) & 0xff
         if k == 27:  # 'esc' key has been pressed, exit program.
             break
         if k == 112:  # 'p' has been pressed. this will pause/resume the code.
@@ -71,7 +73,7 @@ def main():
                 print("Code is paused. Press 'p' to resume..")
                 while pause is True:
                     # stay in this loop until
-                    key = cv2.waitKey(30) & 0xff
+                    key = cv2.waitKey(1) & 0xff
                     if key == 112:
                         pause = False
                         print("Resume code..!!")
